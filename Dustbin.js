@@ -2,8 +2,7 @@ class Dustbin {
     constructor(x, y, width, height) {
       var options = {
            'isStatic': true,
-          'restitution':0.5,
-          'friction':1.2,
+          'friction':2.0,
           'density':5.0,
       }
   
@@ -20,9 +19,8 @@ class Dustbin {
       translate(pos.x,pos.y);
       rotate(angle);
       rectMode(CENTER);
-      strokeWeight(5);
-      stroke("yellow");
-      fill("brown");
+      stroke("green");
+      fill("green");
       rect(0, 0, this.width, this.height);
       pop();
     }
