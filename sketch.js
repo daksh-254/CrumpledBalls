@@ -1,31 +1,26 @@
-var paper, dustbinRight, dustbinLeft, dustbinMiddle;
-
 const Engine = Matter.Engine;
 const World = Matter.World;
 const Bodies = Matter.Bodies;
 const Body = Matter.Body;
 
-function preload()
-{
-	
-}
+var ball, dustbinRight, dustbinLeft, dustbinMiddle;
 
 function setup() {
-	createCanvas(1200, 650);
-
-
+  createCanvas(1300, 1350);
+  
 	engine = Engine.create();
 	world = engine.world;
 
 //The Bodies
  //paper 
-   paper1 = new Paper(150, 500, 10);   
+   ball = new Paper(160, 100, 70);
+   console.log(ball.y);
  //dustbin  
-   dustbinRight = new Dustbin(639, 540, 10, 150);
-   dustbinMiddle = new Dustbin(750, 600, 200, 10);
-   dustbinLeft = new Dustbin(851, 540, 10, 150);
+   dustbinRight = new Dustbin(650, 480, 10, 250);
+   dustbinLeft = new Dustbin(855, 480, 10, 250);
+   dustbinMiddle = new Dustbin1(750, 550, 200, 10);
  //ground
-   ground = new Ground(600, height-35, 1200, 15); 
+   ground = new Ground(750, 615, 1600, 20); 
 
 	Engine.run(engine);
   
@@ -33,24 +28,24 @@ function setup() {
 
 
 function draw() {
-  rectMode(CENTER);
-  background(0);
+  background("gray");
+  Engine.update(engine);
 
 //displaying
+  ball.display();
+  
+  ground.display();
+
   dustbinRight.display();
   dustbinMiddle.display();
   dustbinLeft.display();
-
-  paper1.display();
-  
-  ground.display();
 
   drawSprites();
 }
 
 function keyPressed(){
  if(keyCode === UP_ARROW){
-    Matter.Body.applyForce(paper1.body, paper1.body.position, {x:15, y:-15});
+    Matter.Body.applyForce(ball.body, ball.body.position, {x:15, y:-15});
  }
 }
 
