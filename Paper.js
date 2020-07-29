@@ -1,26 +1,26 @@
 class Paper {
-    constructor(x, y, radius) {
-      var options = {
-           restitution:1.0,
-           friction:0.5,
-           density:1.2,
-      }
-  
-      this.body = Bodies.circle(x, y, radius, options);
-      
-      World.add(world, this.body);
+  constructor(x, y, radius) {
+    var options = {
+         restitution:1.0,
+         friction:0.5,
+         density:1.2,
     }
 
-  display(){
-      var pos =this.body.position;
-      var angle = this.body.angle;
-      push();
-      translate(pos.x,pos.y);
-      rotate(angle);
-      strokeWeight(1);
-      stroke("black");
-      fill("white");
-      ellipse(0, 0, this.width, this.height);
-      pop();
-    }
-  };
+    this.body = Bodies.circle(x, y, radius, options);
+    this.radius = radius;
+    this.x = x;
+    this.y = y;
+    this.image = loadImage("sprites/paper.png");
+    World.add(world, this.body);
+  }
+
+display(){
+    var pos =this.body.position;
+    push();
+    translate(pos.x,pos.y);
+    imageMode(CENTER);
+    image(this.image, pos.x, pos.y, this.radius);
+    ellipse(pos.x, pos.y, this.radius);
+    pop();
+  }
+};
